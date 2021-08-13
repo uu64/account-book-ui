@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import {
   ChakraProvider,
   Box,
@@ -8,13 +9,18 @@ import {
 } from "@chakra-ui/react";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // return <Component {...pageProps} />
+  const appName = "MONEY TRACKER";
   return (
     <ChakraProvider>
+      <Head>
+        <title>{appName}</title>
+        <meta name="description" content="App to track household expenses" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Container maxW="container.lg">
         <Stack>
           <Heading p={4} as="h1" size="md">
-            &#x1f60e; お金の記録
+            {appName}
           </Heading>
           <Box p={4}>
             <Component {...pageProps} />

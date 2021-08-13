@@ -1,10 +1,10 @@
-import Record from "../models/Record";
+import IRecord from "../models/IRecord";
 import RecordRepository from "../repositories/RecordRepository";
 import DateUtil from "../utils/DateUtil";
 
 export interface MonthlyViewData {
-  current: Record;
-  oneYearBefore: Record;
+  current: IRecord;
+  oneYearBefore: IRecord;
 }
 
 export default class MonthlyViewService {
@@ -25,7 +25,17 @@ export default class MonthlyViewService {
     };
   }
 
-  private static createDefaultRecord(month: string) {
-    return new Record(month, null, null, null, null, null, null, false, "");
+  private static createDefaultRecord(month: string): IRecord {
+    return {
+      month: month,
+      housing: null,
+      electric: null,
+      gas: null,
+      hydro: null,
+      grocery: null,
+      others: null,
+      settled: false,
+      comment: "",
+    };
   }
 }
