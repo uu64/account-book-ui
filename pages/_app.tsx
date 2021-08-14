@@ -18,19 +18,17 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="description" content="App to track household expenses" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container maxW="container.lg">
+      <Container maxW="container.lg" fontSize={["xs", "sm", "md", "md", "md"]}>
         <Stack>
-          <Heading p={4} as="h1" size="md">
+          <Heading px={4} py={8} as="h1" size="md">
             {appName}
           </Heading>
           <Box p={4}>
             <Component {...pageProps} />
           </Box>
-          <Box p={4}>
+          <Box px={4} py={8}>
             <footer>
-              <Text align="center" pt={8}>
-                © 2021 yusuke
-              </Text>
+              <Text align="center">© 2021 yusuke</Text>
             </footer>
           </Box>
         </Stack>

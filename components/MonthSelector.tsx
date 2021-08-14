@@ -39,7 +39,7 @@ const MonthSelector: React.FC<Props> = (props) => {
           {yearOptions}
         </Select>
         <Text> / </Text>
-        <Select w="8em" value={month} onChange={onMonthChange}>
+        <Select w="6em" value={month} onChange={onMonthChange}>
           {monthOptions}
         </Select>
       </HStack>

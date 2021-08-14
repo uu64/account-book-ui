@@ -7,6 +7,14 @@ import DateUtil from "../utils/DateUtil";
 import styles from "../styles/MonthlyViewtable.module.css";
 
 const NODATA_LABEL = "-";
+const oneYrB4ColDisplay = [
+  "none",
+  "none",
+  "table-cell",
+  "table-cell",
+  "table-cell",
+];
+const tableCellPadX = ["0.5em", "2em", "2em", "2em", "2em"];
 
 interface Props {
   year: number;
@@ -42,16 +50,16 @@ function renderRow(
 
   return (
     <Tr>
-      <Td>
+      <Td px={tableCellPadX}>
         <Text align="center">{label}</Text>
       </Td>
-      <Td isNumeric>
+      <Td isNumeric px={tableCellPadX}>
         <Text color={textColor(curStr)}>{curStr}</Text>
       </Td>
-      <Td isNumeric>
+      <Td isNumeric px={tableCellPadX} display={oneYrB4ColDisplay}>
         <Text color={textColor(oneYrB4Str)}>{oneYrB4Str}</Text>
       </Td>
-      <Td isNumeric>
+      <Td isNumeric px={tableCellPadX}>
         <Text>{diff}</Text>
       </Td>
     </Tr>
@@ -79,13 +87,11 @@ const MonthlyViewTable: React.FC<Props> = ({ year, month }) => {
     <Table variant="simple" className={isLoading ? styles.loading : ""}>
       <Thead>
         <Tr>
-          <Th>
-            <Text align="center" fontSize="md">
-              項目
-            </Text>
+          <Th px={tableCellPadX}>
+            <Text align="center">項目</Text>
           </Th>
-          <Th>
-            <Text align="center" fontSize="md">
+          <Th px={tableCellPadX}>
+            <Text align="center">
               当月 (
               {monthStr
                 ? DateUtil.getDateString(monthStr, "YYYY / MM")
@@ -93,8 +99,8 @@ const MonthlyViewTable: React.FC<Props> = ({ year, month }) => {
               )
             </Text>
           </Th>
-          <Th>
-            <Text align="center" fontSize="md">
+          <Th px={tableCellPadX} display={oneYrB4ColDisplay}>
+            <Text align="center">
               １年前 (
               {monthStr
                 ? DateUtil.getDateStringOneYrB4(monthStr, "YYYY / MM")
@@ -102,10 +108,8 @@ const MonthlyViewTable: React.FC<Props> = ({ year, month }) => {
               )
             </Text>
           </Th>
-          <Th>
-            <Text align="center" fontSize="md">
-              当月 - １年前
-            </Text>
+          <Th px={tableCellPadX}>
+            <Text align="center">対前年</Text>
           </Th>
         </Tr>
       </Thead>
