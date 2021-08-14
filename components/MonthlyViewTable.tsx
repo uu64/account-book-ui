@@ -16,6 +16,17 @@ function toYenString(value: number | null): string {
   return value ? `￥ ${value.toLocaleString("ja-JP")}` : NODATA_LABEL;
 }
 
+function getYenDiff(
+  current: number | null,
+  oneYearBefore: number | null
+): string {
+  if (typeof current === "number" && typeof oneYearBefore === "number") {
+    const d = current - oneYearBefore;
+    return `( ${d > 0 ? "+" : ""}${d.toLocaleString("ja-JP")} )`;
+  }
+  return NODATA_LABEL;
+}
+
 function renderRow(
   label: string,
   current: number | null,
@@ -23,6 +34,7 @@ function renderRow(
 ) {
   const curStr = toYenString(current);
   const oneYrB4Str = toYenString(oneYearBefore);
+  const diff = getYenDiff(current, oneYearBefore);
   const textColor = (v: string) => {
     return v === NODATA_LABEL ? "gray" : "black";
   };
@@ -37,6 +49,9 @@ function renderRow(
       </Td>
       <Td isNumeric>
         <Text color={textColor(oneYrB4Str)}>{oneYrB4Str}</Text>
+      </Td>
+      <Td isNumeric>
+        <Text>{diff}</Text>
       </Td>
     </Tr>
   );
@@ -69,12 +84,25 @@ const MonthlyViewTable: React.FC<Props> = ({ year, month }) => {
           </Th>
           <Th>
             <Text align="center" fontSize="md">
-              当月 ({DateUtil.getDateString(monthStr, "YYYY / MM")})
+              当月 (
+              {monthStr
+                ? DateUtil.getDateString(monthStr, "YYYY / MM")
+                : NODATA_LABEL}
+              )
             </Text>
           </Th>
           <Th>
             <Text align="center" fontSize="md">
-              １年前 ({DateUtil.getDateStringOneYrB4(monthStr, "YYYY / MM")})
+              １年前 (
+              {monthStr
+                ? DateUtil.getDateStringOneYrB4(monthStr, "YYYY / MM")
+                : NODATA_LABEL}
+              )
+            </Text>
+          </Th>
+          <Th>
+            <Text align="center" fontSize="md">
+              当月 - １年前
             </Text>
           </Th>
         </Tr>
