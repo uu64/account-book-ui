@@ -1,6 +1,6 @@
 import { Flex, HStack, Select, Spacer, Text } from "@chakra-ui/react";
+import { CalendarIcon } from "@chakra-ui/icons";
 import { ChangeEventHandler } from "react";
-import { FiCalendar } from "react-icons/fi";
 
 interface Props {
   year: number;
@@ -34,7 +34,7 @@ const MonthSelector: React.FC<Props> = (props) => {
     <Flex>
       <Spacer />
       <HStack>
-        <FiCalendar size="1.5em" />
+        <CalendarIcon />
         <Select w="8em" value={year} onChange={onYearChange}>
           {yearOptions}
         </Select>

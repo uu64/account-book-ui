@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { NextPage } from "next";
-import { Stack } from "@chakra-ui/react";
+import { HStack, Spacer, Stack } from "@chakra-ui/react";
+import EditLink from "../components/EditLink";
 import MonthSelector from "../components/MonthSelector";
 import MonthlyViewTable from "../components/MonthlyViewTable";
 
@@ -17,7 +18,7 @@ const Home: NextPage = () => {
   };
 
   return (
-    <Stack>
+    <Stack spacing={6}>
       <MonthSelector
         year={year}
         month={month}
@@ -25,6 +26,10 @@ const Home: NextPage = () => {
         onMonthChange={onMonthChange}
       />
       <MonthlyViewTable year={year} month={month} />
+      <HStack>
+        <Spacer />
+        <EditLink />
+      </HStack>
     </Stack>
   );
 };
