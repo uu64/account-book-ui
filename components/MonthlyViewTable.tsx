@@ -4,6 +4,7 @@ import MonthlyViewService, {
   MonthlyViewData,
 } from "../services/MonthlyViewService";
 import DateUtil from "../utils/DateUtil";
+import styles from "../styles/MonthlyViewtable.module.css";
 
 const NODATA_LABEL = "-";
 
@@ -63,18 +64,19 @@ const MonthlyViewTable: React.FC<Props> = ({ year, month }) => {
     oneYearBefore: MonthlyViewService.createEmptyRecord(),
     monthStr: "",
   });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log("update start");
+    setIsLoading(true);
     MonthlyViewService.getData(year, month).then((res) => {
       setData(res);
-      console.log("update complete");
+      setIsLoading(false);
     });
   }, [year, month]);
 
   const { current, oneYearBefore, monthStr } = data;
   return (
-    <Table variant="simple">
+    <Table variant="simple" className={isLoading ? styles.loading : ""}>
       <Thead>
         <Tr>
           <Th>

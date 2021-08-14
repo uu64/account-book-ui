@@ -4,16 +4,17 @@ import { HStack, Spacer, Stack } from "@chakra-ui/react";
 import EditLink from "../components/EditLink";
 import MonthSelector from "../components/MonthSelector";
 import MonthlyViewTable from "../components/MonthlyViewTable";
+import DateUtil from "../utils/DateUtil";
 
 const Home: NextPage = () => {
-  const [year, setYear] = useState<number>(2021);
-  const [month, setMonth] = useState<number>(7);
+  const today = new Date();
+  const [year, setYear] = useState<number>(today.getFullYear());
+  const [month, setMonth] = useState<number>(today.getMonth());
+
   const onYearChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    console.log("update year");
     setYear(parseInt(event.target.value));
   };
   const onMonthChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    console.log("update month");
     setMonth(parseInt(event.target.value));
   };
 

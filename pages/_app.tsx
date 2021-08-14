@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Box p={4}>
             <Component {...pageProps} />
           </Box>
-          <Box>
+          <Box p={4}>
             <footer>
               <Text align="center" pt={8}>
                 © 2021 yusuke
