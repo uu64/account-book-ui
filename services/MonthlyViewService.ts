@@ -3,6 +3,7 @@ import RecordRepository from "../repositories/RecordRepository";
 import DateUtil from "../utils/DateUtil";
 
 export interface MonthlyViewData {
+  monthStr: string;
   current: IRecord;
   oneYearBefore: IRecord;
 }
@@ -18,16 +19,15 @@ export default class MonthlyViewService {
     const oneYrB4Record = records.find((r) => r.month === oneYrB4Str);
 
     return {
-      current: curRecord ? curRecord : this.createDefaultRecord(curMthStr),
-      oneYearBefore: oneYrB4Record
-        ? oneYrB4Record
-        : this.createDefaultRecord(oneYrB4Str),
+      monthStr: curMthStr,
+      current: curRecord ? curRecord : this.createEmptyRecord(),
+      oneYearBefore: oneYrB4Record ? oneYrB4Record : this.createEmptyRecord(),
     };
   }
 
-  private static createDefaultRecord(month: string): IRecord {
+  static createEmptyRecord(): IRecord {
     return {
-      month: month,
+      month: "",
       housing: null,
       electric: null,
       gas: null,

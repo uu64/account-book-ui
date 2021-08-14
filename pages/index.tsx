@@ -1,45 +1,32 @@
-import type { NextPage, GetServerSideProps } from "next";
-import { Stack, Box, Button } from "@chakra-ui/react";
-import MonthlyViewService, {
-  MonthlyViewData,
-} from "../services/MonthlyViewService";
+import { ChangeEvent, useState } from "react";
+import { NextPage } from "next";
+import { Stack } from "@chakra-ui/react";
+import MonthSelector from "../components/MonthSelector";
 import MonthlyViewTable from "../components/MonthlyViewTable";
 
-interface Props {
-  data: MonthlyViewData;
-}
+const Home: NextPage = () => {
+  const [year, setYear] = useState<number>(2021);
+  const [month, setMonth] = useState<number>(7);
+  const onYearChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    console.log("update year");
+    setYear(parseInt(event.target.value));
+  };
+  const onMonthChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    console.log("update month");
+    setMonth(parseInt(event.target.value));
+  };
 
-const Home: NextPage<Props> = ({ data }) => {
   return (
     <Stack>
-      <Box>
-        <MonthlyViewTable data={data} />
-      </Box>
-      <Box>
-        <Button
-          onClick={() => {
-            MonthlyViewService.getData(2021, 3).then((res) => {
-              console.log(res);
-            });
-          }}
-        >
-          Button
-        </Button>
-      </Box>
+      <MonthSelector
+        year={year}
+        month={month}
+        onYearChange={onYearChange}
+        onMonthChange={onMonthChange}
+      />
+      <MonthlyViewTable year={year} month={month} />
     </Stack>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const today = new Date();
-  const data = await MonthlyViewService.getData(
-    today.getFullYear(),
-    today.getMonth()
-  );
-  console.log(data);
-  return {
-    props: { data },
-  };
 };
 
 export default Home;

@@ -1,11 +1,16 @@
+import { useEffect, useState } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td, Text } from "@chakra-ui/react";
-import { MonthlyViewData } from "../services/MonthlyViewService";
+import MonthlyViewService, {
+  MonthlyViewData,
+} from "../services/MonthlyViewService";
+import DateUtil from "../utils/DateUtil";
+
+const NODATA_LABEL = "-";
 
 interface Props {
-  data: MonthlyViewData;
+  year: number;
+  month: number;
 }
-
-const NODATA_LABEL = "NO DATA";
 
 function toYenString(value: number | null): string {
   return value ? `￥ ${value.toLocaleString("ja-JP")}` : NODATA_LABEL;
@@ -37,8 +42,22 @@ function renderRow(
   );
 }
 
-const MonthlyViewTable: React.FC<Props> = ({ data }) => {
-  const { current, oneYearBefore } = data;
+const MonthlyViewTable: React.FC<Props> = ({ year, month }) => {
+  const [data, setData] = useState<MonthlyViewData>({
+    current: MonthlyViewService.createEmptyRecord(),
+    oneYearBefore: MonthlyViewService.createEmptyRecord(),
+    monthStr: "",
+  });
+
+  useEffect(() => {
+    console.log("update start");
+    MonthlyViewService.getData(year, month).then((res) => {
+      setData(res);
+      console.log("update complete");
+    });
+  }, [year, month]);
+
+  const { current, oneYearBefore, monthStr } = data;
   return (
     <Table variant="simple">
       <Thead>
@@ -50,12 +69,12 @@ const MonthlyViewTable: React.FC<Props> = ({ data }) => {
           </Th>
           <Th>
             <Text align="center" fontSize="md">
-              今月
+              当月 ({DateUtil.getDateString(monthStr, "YYYY / MM")})
             </Text>
           </Th>
           <Th>
             <Text align="center" fontSize="md">
-              １年前
+              １年前 ({DateUtil.getDateStringOneYrB4(monthStr, "YYYY / MM")})
             </Text>
           </Th>
         </Tr>

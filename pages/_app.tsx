@@ -1,11 +1,12 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import {
-  ChakraProvider,
   Box,
+  ChakraProvider,
   Container,
-  Stack,
   Heading,
+  Stack,
+  Text,
 } from "@chakra-ui/react";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -24,6 +25,13 @@ function MyApp({ Component, pageProps }: AppProps) {
           </Heading>
           <Box p={4}>
             <Component {...pageProps} />
+          </Box>
+          <Box>
+            <footer>
+              <Text align="center" pt={8}>
+                © 2021 yusuke
+              </Text>
+            </footer>
           </Box>
         </Stack>
       </Container>
