@@ -4,7 +4,6 @@ import { HStack, Spacer, Stack } from "@chakra-ui/react";
 import EditLink from "../components/EditLink";
 import MonthSelector from "../components/MonthSelector";
 import MonthlyViewTable from "../components/MonthlyViewTable";
-import DateUtil from "../utils/DateUtil";
 
 const Home: NextPage = () => {
   const today = new Date();
