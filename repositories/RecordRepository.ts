@@ -33,8 +33,9 @@ export default class RecordRepository {
         gas: d["gas"],
         hydro: d["hydro"],
         grocery: d["grocery"],
+        misc: d["misc"],
         others: d["others"],
-        settled: d["settled"],
+        sum: d["sum"],
         comment: d["comment"],
       });
     }

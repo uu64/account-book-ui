@@ -115,7 +115,8 @@ const MonthlyViewTable: React.FC<Props> = ({ year, month }) => {
         {renderRow("ガス代", current.gas, oneYearBefore.gas)}
         {renderRow("水道代", current.hydro, oneYearBefore.hydro)}
         {renderRow("食費", current.grocery, oneYearBefore.grocery)}
-        {renderRow("雑費", current.others, oneYearBefore.others)}
+        {renderRow("雑費", current.misc, oneYearBefore.misc)}
+        {renderRow("その他", current.others, oneYearBefore.others)}
       </Tbody>
     </Table>
   );

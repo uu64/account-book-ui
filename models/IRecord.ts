@@ -5,7 +5,8 @@ export default interface IRecord {
   gas: number | null;
   hydro: number | null;
   grocery: number | null;
+  misc: number | null;
   others: number | null;
-  settled: boolean;
+  sum: number | null;
   comment: string;
 }

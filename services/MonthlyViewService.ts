@@ -33,8 +33,9 @@ export default class MonthlyViewService {
       gas: null,
       hydro: null,
       grocery: null,
+      misc: null,
       others: null,
-      settled: false,
+      sum: null,
       comment: "",
     };
   }
