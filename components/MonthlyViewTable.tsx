@@ -4,6 +4,7 @@ import MonthlyViewService, {
   MonthlyViewData,
 } from "../services/MonthlyViewService";
 import DateUtil from "../utils/DateUtil";
+import LocaleUtil from "../utils/LocaleUtil";
 import styles from "../styles/LoadingOverlay.module.css";
 
 const NODATA_LABEL = "-";
@@ -88,11 +89,11 @@ const MonthlyViewTable: React.FC<Props> = ({ year, month }) => {
       <Thead>
         <Tr>
           <Th px={tableCellPadX}>
-            <Text align="center">項目</Text>
+            <Text align="center">{LocaleUtil.get("item")}</Text>
           </Th>
           <Th px={tableCellPadX}>
             <Text align="center">
-              当月 (
+              {LocaleUtil.get("this-month")} (
               {monthStr
                 ? DateUtil.getDateString(monthStr, "YYYY / MM")
                 : NODATA_LABEL}
@@ -101,7 +102,7 @@ const MonthlyViewTable: React.FC<Props> = ({ year, month }) => {
           </Th>
           <Th px={tableCellPadX} display={oneYrB4ColDisplay}>
             <Text align="center">
-              １年前 (
+              {LocaleUtil.get("1year-before")} (
               {monthStr
                 ? DateUtil.getDateStringYrB4(monthStr, 1, "YYYY / MM")
                 : NODATA_LABEL}
@@ -109,18 +110,34 @@ const MonthlyViewTable: React.FC<Props> = ({ year, month }) => {
             </Text>
           </Th>
           <Th px={tableCellPadX}>
-            <Text align="center">対前年</Text>
+            <Text align="center">{LocaleUtil.get("diff")}</Text>
           </Th>
         </Tr>
       </Thead>
       <Tbody>
-        {renderRow("住宅費", current.housing, oneYearBefore.housing)}
-        {renderRow("電気代", current.electric, oneYearBefore.electric)}
-        {renderRow("ガス代", current.gas, oneYearBefore.gas)}
-        {renderRow("水道代", current.hydro, oneYearBefore.hydro)}
-        {renderRow("食費", current.grocery, oneYearBefore.grocery)}
-        {renderRow("雑費", current.misc, oneYearBefore.misc)}
-        {renderRow("その他", current.others, oneYearBefore.others)}
+        {renderRow(
+          LocaleUtil.get("housing"),
+          current.housing,
+          oneYearBefore.housing
+        )}
+        {renderRow(
+          LocaleUtil.get("electric"),
+          current.electric,
+          oneYearBefore.electric
+        )}
+        {renderRow(LocaleUtil.get("gas"), current.gas, oneYearBefore.gas)}
+        {renderRow(LocaleUtil.get("hydro"), current.hydro, oneYearBefore.hydro)}
+        {renderRow(
+          LocaleUtil.get("grocery"),
+          current.grocery,
+          oneYearBefore.grocery
+        )}
+        {renderRow(LocaleUtil.get("misc"), current.misc, oneYearBefore.misc)}
+        {renderRow(
+          LocaleUtil.get("others"),
+          current.others,
+          oneYearBefore.others
+        )}
       </Tbody>
     </Table>
   );

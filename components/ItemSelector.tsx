@@ -1,7 +1,7 @@
-import { Flex, HStack, Select, Spacer, Text } from "@chakra-ui/react";
-import { CalendarIcon } from "@chakra-ui/icons";
+import { Flex, Select, Spacer } from "@chakra-ui/react";
 import { ChangeEventHandler } from "react";
 import { ItemIds } from "../services/TransitionViewService";
+import LocaleUtil from "../utils/LocaleUtil";
 
 interface Props {
   item: string;
@@ -14,7 +14,7 @@ const ItemSelector: React.FC<Props> = (props) => {
   for (let id of ItemIds) {
     itemOptions.push(
       <option key={id} value={id}>
-        {id}
+        {LocaleUtil.get(id)}
       </option>
     );
   }

@@ -3,6 +3,7 @@ import { Heading, HStack, Spacer, Stack } from "@chakra-ui/react";
 import EditLink from "./EditLink";
 import MonthSelector from "./MonthSelector";
 import MonthlyViewTable from "./MonthlyViewTable";
+import LocaleUtil from "../utils/LocaleUtil";
 
 const MonthlyView: React.FC = () => {
   const today = new Date();
@@ -19,7 +20,7 @@ const MonthlyView: React.FC = () => {
   return (
     <Stack spacing={6}>
       <Heading as="h3" fontSize={["sm", "sm", "md", "md", "md"]}>
-        使ったお金
+        {LocaleUtil.get("monthly-view-title")}
       </Heading>
       <MonthSelector
         year={year}

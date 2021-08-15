@@ -5,6 +5,7 @@ import { Box } from "@chakra-ui/react";
 import TransitionViewService, {
   TransitionViewDataSet,
 } from "../services/TransitionViewService";
+import LocaleUtil from "../utils/LocaleUtil";
 import styles from "../styles/LoadingOverlay.module.css";
 
 interface Props {
@@ -52,7 +53,7 @@ const TransitionViewGraph: React.FC<Props> = ({ year, month, item }) => {
   useEffect(() => {
     const data = dataSet.data.find((d) => d.label === item);
     const values = data ? data.values : [];
-    const label = data ? data.label : "";
+    const label = data ? LocaleUtil.get(data.label) : "";
     setData(createChartData(values, dataSet.xticks, label));
   }, [item, dataSet]);
 

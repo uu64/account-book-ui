@@ -3,6 +3,7 @@ import { Heading, Stack } from "@chakra-ui/react";
 import ItemSelector from "./ItemSelector";
 import TransitionViewGraph from "./TransitionViewGraph";
 import { recordAttributeIds } from "../models/IRecord";
+import LocaleUtil from "../utils/LocaleUtil";
 
 const LineChart: React.FC = () => {
   const today = new Date();
@@ -17,7 +18,7 @@ const LineChart: React.FC = () => {
   return (
     <Stack spacing={6}>
       <Heading as="h3" fontSize={["sm", "sm", "md", "md", "md"]}>
-        使い方の変化
+        {LocaleUtil.get("transition-view-title")}
       </Heading>
       <ItemSelector item={item} onChange={onChange} />
       <TransitionViewGraph year={year} month={month} item={item} />
