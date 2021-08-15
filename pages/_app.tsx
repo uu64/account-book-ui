@@ -20,13 +20,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <Container maxW="container.lg" fontSize={["xs", "sm", "md", "md", "md"]}>
         <Stack>
-          <Heading px={4} py={8} as="h1" size="md">
+          <Heading py={8} as="h1" size="md">
             {appName}
           </Heading>
-          <Box p={4}>
+          <Box>
             <Component {...pageProps} />
           </Box>
-          <Box px={4} py={8}>
+          <Box py={8}>
             <footer>
               <Text align="center">© 2021 yusuke</Text>
             </footer>
