@@ -22,7 +22,7 @@ const ItemSelector: React.FC<Props> = (props) => {
   return (
     <Flex>
       <Spacer />
-      <Select w="8em" value={item} onChange={onChange}>
+      <Select w="10em" value={item} onChange={onChange}>
         {itemOptions}
       </Select>
     </Flex>
