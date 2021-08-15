@@ -4,7 +4,7 @@ import MonthlyViewService, {
   MonthlyViewData,
 } from "../services/MonthlyViewService";
 import DateUtil from "../utils/DateUtil";
-import styles from "../styles/MonthlyViewtable.module.css";
+import styles from "../styles/LoadingOverlay.module.css";
 
 const NODATA_LABEL = "-";
 const oneYrB4ColDisplay = [
@@ -103,7 +103,7 @@ const MonthlyViewTable: React.FC<Props> = ({ year, month }) => {
             <Text align="center">
               １年前 (
               {monthStr
-                ? DateUtil.getDateStringOneYrB4(monthStr, "YYYY / MM")
+                ? DateUtil.getDateStringYrB4(monthStr, 1, "YYYY / MM")
                 : NODATA_LABEL}
               )
             </Text>

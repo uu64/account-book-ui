@@ -5,13 +5,39 @@ export default class DateUtil {
     return dayjs(date).format(format);
   }
 
-  static getDateStringOneMthB4(date: string | Date, format: string): string {
+  static getDateStringMthB4(
+    date: string | Date,
+    value: number,
+    format: string
+  ): string {
     const dt = dayjs(date);
-    return dt.subtract(1, "month").format(format);
+    return dt.subtract(value, "month").format(format);
   }
 
-  static getDateStringOneYrB4(date: string | Date, format: string): string {
+  static getDateStringYrB4(
+    date: string | Date,
+    value: number,
+    format: string
+  ): string {
     const dt = dayjs(date);
-    return dt.subtract(1, "year").format(format);
+    return dt.subtract(value, "year").format(format);
+  }
+
+  static getDateStringRange(
+    start: string | Date,
+    end: string | Date,
+    interval: number,
+    unit: "year" | "month",
+    format: string
+  ): string[] {
+    let dt = dayjs(start);
+    const range: string[] = [];
+
+    while (dt.isBefore(end)) {
+      range.push(dt.format(format));
+      dt = dt.add(interval, unit);
+    }
+
+    return range;
   }
 }
